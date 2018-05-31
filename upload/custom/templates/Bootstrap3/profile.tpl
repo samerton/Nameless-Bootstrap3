@@ -93,7 +93,7 @@
 			  </div>
 
 			  <div class="panel-heading">
-				<h2 class="panel-title" style="display:inline;"><a href="{$post.profile}">{$post.nickname}:</a></h2>
+				<h2 class="panel-title" style="display:inline;"><a href="{$post.profile}" style="{$post.user_style}">{$post.nickname}:</a></h2>
 				<span class="pull-right"><span rel="tooltip" data-original-title="{$post.date}">{$post.date_rough}</span></span>
 			  </div>
 

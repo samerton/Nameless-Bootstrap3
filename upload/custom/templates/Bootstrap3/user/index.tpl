@@ -18,6 +18,12 @@
 			{/foreach}
 			{/nocache}
 		  </ul>
+		  {if isset($FORUM_GRAPH)}
+		  <div id="chartWrapper">
+			<h3>{$FORUM_GRAPH}</h3>
+			<canvas id="dataChart" width="100%" height="40"></canvas>
+		  </div>
+		  {/if}
 		</div>
 	  </div>
 	</div>

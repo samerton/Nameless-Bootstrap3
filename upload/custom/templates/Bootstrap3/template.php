@@ -2,15 +2,17 @@
 /*
  *	Made by Samerton
  *  https://github.com/NamelessMC/Nameless/
- *  NamelessMC version 2.0.0-pr3
+ *  NamelessMC version 2.0.0-pr4
  *
  *  License: MIT
  *
  *  Bootstrap 3 template
  */
 
-$template_version = 'v2.0.0-pr3'; // Version number of template
-$nl_template_version = '2.0.0-pr3'; // Nameless version template is designed for
+$template_version = 'v2.0.0-pr4'; // Version number of template
+$nl_template_version = '2.0.0-pr4'; // Nameless version template is designed for
+
+$route = rtrim($_GET['route'], '/');
 
 $cache->setCache('bs3_template');
 if($cache->isCached('bootswatch')){
@@ -43,22 +45,21 @@ if(!isset($admin_styles)){
   	(defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/templates/Bootstrap3/js/bootstrap.min.js'
   );
 
-  if(defined('PAGE') && PAGE == 'cc_messaging'){
+  if($route == '/user/messaging'){
   	$js_sources[] = (defined('CONFIG_PATH') ? CONFIG_PATH : '') . '/custom/templates/Bootstrap3/js/bootstrap3-typeahead.min.js';
   }
 
   // Page load time
-  $page_load = microtime(true) - $start;
-  if(isset($page_loading) && $page_loading == '1'){
-  	$js = '
+  if(isset($page_loading) && $page_loading == '1') {
+  	$page_load_js = '
   	<script type="text/javascript">
-  	var timer = \'' . str_replace('{x}', round($page_load, 3), $language->get('general', 'page_loaded_in')) . '\';
+  	var timer = \'' . $language->get('general', 'page_loaded_in') . '\';
   	$(\'#page_load_tooltip\').attr(\'title\', timer).tooltip();
   	</script>';
-  } else $js = '';
+  }
 
   // Popovers
-  $js.= '
+  $js = '
    <script>
    $(".pop").popover({ trigger: "manual" , html: true, animation:false, placement: "top" })
   	.on("mouseenter", function () {
@@ -267,10 +268,26 @@ if(!isset($admin_styles)){
       }
 
     </script>';
+  } else {
+      if(defined('COOKIE_NOTICE')){
+          $js .= '<script type="text/javascript">
+          toastr.options.timeOut = 0;
+          toastr.options.extendedTimeOut = 0;
+          toastr.options.closeButton = true;
+          
+          toastr.options.onclick = function() { $(\'.toast .toast-close-button\').focus(); }
+          toastr.options.onHidden = function() { $.cookie(\'accept\', \'accepted\', { path: \'/\' }); }
+          
+          toastr.options.positionClass = \'toast-bottom-left\';
+          
+          toastr.info(\'' . $language->get('general', 'cookie_notice') . '\');
+          
+          </script>';
+      }
   }
 
   // Registration page/login page checkbox
-  if(defined('PAGE') && (PAGE == 'login' || PAGE == 'register' || PAGE == 'complete_signup')){
+  if($route == '/login' || $route == '/register' || $route == '/complete_signup'){
   	$js .= '
   	<script>
   	$(function () {

@@ -72,20 +72,12 @@
 			  <h2 style="margin-top:5px;">{$STATISTICS} <i class="fa fa-bar-chart"></i></h2>
 			  {$USERS_REGISTERED}<br />
 			  {$LATEST_MEMBER}
-			  
-			  <hr />
-			  
-			  <h3>{$ONLINE_USERS}</h3>
-			  {$ONLINE_USERS_LIST}
-			  
 			</div>
 		  </div>
 
 		  {if count($WIDGETS)}
-		    <br />
 		    {foreach from=$WIDGETS item=widget}
 		      {$widget}
-		      <br /><br />
 		    {/foreach}
 		  {/if}
 		</div>

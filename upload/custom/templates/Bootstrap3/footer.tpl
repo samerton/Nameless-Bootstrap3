@@ -62,6 +62,7 @@
 			  <ul class="dropdown-menu" aria-labelledby="Preview">
 				<li><a target="_blank" href="https://namelessmc.com/">Powered by NamelessMC</a></li>
 				<li><a href="{$TERMS_LINK}">{$TERMS_TEXT}</a></li>
+				<li><a href="{$PRIVACY_LINK}">{$PRIVACY_TEXT}</a></li>
 			  </ul>
 			</li>
 		  </ul>
