@@ -21,7 +21,7 @@ class Bootstrap3_Template extends TemplateBase {
 
 		parent::__construct(
 			'Bootstrap 3',
-			'2.0.0-pr5',
+			'1.2.0',
 			'2.0.0-pr5',
 			'<a href="https://samerton.me/" target="_blank">Samerton</a>'
 		);

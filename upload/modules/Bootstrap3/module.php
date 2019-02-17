@@ -15,7 +15,7 @@ class Bootstrap3_Module extends Module {
 	public function __construct($pages, $language){
 		$name = 'Bootstrap3';
 		$author = '<a href="https://samerton.me" target="_blank" rel="nofollow noopener">Samerton</a>';
-		$module_version = '1.0.1';
+		$module_version = '1.2.0';
 		$nameless_version = '2.0.0-pr5';
 
 		$this->_language = $language;
