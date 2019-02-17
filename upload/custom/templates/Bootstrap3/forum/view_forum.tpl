@@ -1,3 +1,4 @@
+{include file='header.tpl'}
 {include file='navbar.tpl'}
 
 <div class="container">
@@ -37,7 +38,7 @@
 				    <div class="col-md-9">
 					  <a href="{$subforum.latest_post.link}">{$subforum.latest_post.title}</a>
 					  <br />
-					  <span data-toggle="tooltip" data-trigger="hover" data-original-title="{$subforum.latest_post.time}">{$subforum.latest_post.timeago}</span><br />{$BY} <a style="{$subforum.latest_post.last_user_style}" href="{$subforum.latest_post.last_user_link}">{$subforum.latest_post.last_user}</a>
+					  <span data-toggle="tooltip" data-trigger="hover" data-original-title="{$subforum.latest_post.time}">{$subforum.latest_post.timeago}</span><br />{$BY} <a style="{$subforum.latest_post.last_user_style}" href="{$subforum.latest_post.last_user_link}" data-poload="{$USER_INFO_URL}{$subforum.latest_post.last_user_id}" data-html="true" data-placement="top">{$subforum.latest_post.last_user}</a>
 				    </div>
 				  </div>
 				  {else}
@@ -61,7 +62,7 @@
 			<tr>
 			  <td>
 				<i class="fa fa-thumb-tack"></i> {if $sticky.locked == 1}<i class="fa fa-lock"></i> {/if}{$sticky.label} <a href="{$sticky.link}">{$sticky.topic_title}</a><br />
-				<small><span data-toggle="tooltip" data-trigger="hover" data-original-title="{$sticky.topic_created}">{$sticky.topic_created_rough}</span> {$BY} <a style="{$sticky.topic_created_style}" href="{$sticky.author_link}">{$sticky.topic_created_username}</a></small>
+				<small><span data-toggle="tooltip" data-trigger="hover" data-original-title="{$sticky.topic_created}">{$sticky.topic_created_rough}</span> {$BY} <a style="{$sticky.topic_created_style}" href="{$sticky.author_link}" data-poload="{$USER_INFO_URL}{$sticky.topic_created_user_id}" data-html="true" data-placement="top">{$sticky.topic_created_username}</a></small>
 			  </td>
 			  <td>
 				<strong>{$sticky.views}</strong> {$VIEWS}<br />
@@ -75,7 +76,7 @@
 					</div>
 				  </div>
 				  <div class="col-md-9">
-					<span data-toggle="tooltip" data-trigger="hover" data-original-title="{$sticky.last_reply}">{$sticky.last_reply_rough}</span><br />{$BY} <a style="{$sticky.last_reply_style}" href="{$sticky.last_reply_link}">{$sticky.last_reply_username}</a>
+					<span data-toggle="tooltip" data-trigger="hover" data-original-title="{$sticky.last_reply}">{$sticky.last_reply_rough}</span><br />{$BY} <a style="{$sticky.last_reply_style}" href="{$sticky.last_reply_link}" data-poload="{$USER_INFO_URL}{$sticky.last_reply_user_id}" data-html="true" data-placement="top">{$sticky.last_reply_username}</a>
 				  </div>
 				</div>
 			  </td>
@@ -125,14 +126,6 @@
 		  </form>
 		  
 		  <br />
-		  
-		  <div class="panel panel-default">
-		    <div class="panel-body">
-			  <h2 style="margin-top:5px;">{$STATS} <i class="fa fa-bar-chart"></i></h2>
-			  {$USERS_REGISTERED}<br />
-			  {$LATEST_MEMBER}
-			</div>
-		  </div>
 
 		  {if count($WIDGETS)}
 		    {foreach from=$WIDGETS item=widget}

@@ -1,3 +1,4 @@
+{include file='header.tpl'}
 {include file='navbar.tpl'}
 
 <div class="container">
@@ -19,7 +20,13 @@
 	  <span data-toggle="tooltip" data-trigger="hover" data-original-title="{$DATE_FULL}">{$DATE}</span>
 	  
 	  <span class="pull-right">
-	    <a href="{$DOWNLOAD_URL}" class="btn btn-primary">{$DOWNLOAD}</a>
+		  {if isset($DOWNLOAD_URL)}
+			  <a href="{$DOWNLOAD_URL}" class="btn btn-primary" target="_blank">{$DOWNLOAD}</a>
+		  {elseif isset($PURCHASE_FOR_PRICE)}
+			  <a {if isset($PURCHASE_LINK)}href="{$PURCHASE_LINK}" {else}disabled {/if}class="btn btn-primary">{$PURCHASE_FOR_PRICE}</a>
+		  {elseif isset($PAYMENT_PENDING)}
+			  <button type="button" disabled class="btn btn-primary">{$PAYMENT_PENDING}</button>
+		  {/if}
       </span>
 	  
     </div>

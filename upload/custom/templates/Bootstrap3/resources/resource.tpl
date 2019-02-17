@@ -1,15 +1,22 @@
+{include file='header.tpl'}
 {include file='navbar.tpl'}
 
 <div class="container">
   <div class="panel panel-default">
     <div class="panel-body">
-	  <h2 style="margin-top:5px;display:inline;">{$VIEWING_RESOURCE}</h2> {$RELEASE_TAG}
-	  <span class="pull-right">
-	    {if isset($CAN_UPDATE)}
-		  <a href="{$UPDATE_LINK}" class="btn btn-info">{$UPDATE}</a>
-		{/if}
-		<a href="{$BACK_LINK}" class="btn btn-danger">{$RESOURCE_INDEX}</a>
-	  </span>
+	    <div class="row">
+		    <div class="col-md-8">
+			    <h2 style="display:inline;">{$VIEWING_RESOURCE}</h2> {$RELEASE_TAG}
+		    </div>
+		    <div class="col-md-4">
+			    <div class="pull-right">
+				    {if isset($CAN_UPDATE)}
+					    <a href="{$UPDATE_LINK}" class="btn btn-info">{$UPDATE}</a>
+				    {/if}
+				    <a href="{$BACK_LINK}" class="btn btn-danger">{$RESOURCE_INDEX}</a>
+			    </div>
+		    </div>
+	    </div>
 	  
 	  <hr />
 	  
@@ -22,8 +29,18 @@
 		  <br />{$CONTRIBUTORS}
 		  
 		  <hr />
-		  
-		  <a href="{$DOWNLOAD_URL}" class="btn btn-primary" target="_blank">{$DOWNLOAD}</a>
+
+		    {if isset($LOG_IN_TO_DOWNLOAD)}
+			    <button disabled class="btn btn-primary">{$LOG_IN_TO_DOWNLOAD}</button>
+		    {/if}
+
+		    {if isset($DOWNLOAD_URL)}
+			    <a href="{$DOWNLOAD_URL}" class="btn btn-primary" target="_blank">{$DOWNLOAD}</a>
+		    {elseif isset($PURCHASE_FOR_PRICE)}
+			    <a {if isset($PURCHASE_LINK)}href="{$PURCHASE_LINK}" {else}disabled {/if}class="btn btn-primary">{$PURCHASE_FOR_PRICE}</a>
+		    {elseif isset($PAYMENT_PENDING)}
+			    <button type="button" disabled class="btn btn-primary">{$PAYMENT_PENDING}</button>
+		    {/if}
 		  
 		  <span class="pull-right">
 			{if isset($CAN_EDIT)}<a href="{$EDIT_LINK}" class="btn btn-default">{$EDIT}</a>{/if}
@@ -115,8 +132,8 @@
 	  {else}
 	    <p>{$NO_REVIEWS}</p>
 	  {/if}
-	  
-	  {if $LOGGED_IN == true}
+
+	  {if $CAN_REVIEW == true && !isset($PAYMENT_PENDING) && !isset($PURCHASE_FOR_PRICE)}
 	  <h4>{$NEW_REVIEW}</h4>
 	  <form action="" method="post">
 	    <div class="form-group">

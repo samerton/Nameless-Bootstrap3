@@ -1,3 +1,4 @@
+{include file='header.tpl'}
 {include file='navbar.tpl'}
 
 <div class="container">
@@ -46,18 +47,17 @@
 		</div>
 		
 		<div class="form-group">
-		  <label for="inputGitHubUsername">{$GITHUB_USERNAME} <small>{$REQUIRED}</small></label>
-		  <input type="text" class="form-control" name="github_username" id="inputGitHubUsername">
-		</div>
-		
-		<div class="form-group">
-		  <label for="inputGitHubRepo">{$GITHUB_REPO_NAME} <small>{$REQUIRED}</small></label>
-		  <input type="text" class="form-control" name="github_repo" id="inputGitHubRepo">
-		</div>
-		
-		<div class="form-group">
 		  <label for="inputContributors">{$CONTRIBUTORS}</label>
 		  <input type="text" class="form-control" name="contributors" id="inputContributors">
+		</div>
+
+		<div class="form-group">
+		  <label for="inputReleaseType">{$RELEASE_TYPE}</label>
+		  <select class="form-control" id="inputReleaseType" name="type">
+		    <option value="zip">{$ZIP_FILE}</option>
+		    <option value="github">{$GITHUB_RELEASE}</option>
+		    <option value="external">{$EXTERNAL_DOWNLOAD}</option>
+		  </select>
 		</div>
 		
 		<div class="form-group">

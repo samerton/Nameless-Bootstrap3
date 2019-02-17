@@ -1,3 +1,4 @@
+{include file='header.tpl'}
 {include file='navbar.tpl'}
 
 <div class="container">
@@ -5,25 +6,25 @@
 	<div class="row">
 	  <div class="col-md-8">
 		<h2>
-		  <img class="img-rounded" style="height:60px;width=60px;" src="{$AVATAR}" />
+		  <img class="img-rounded" style="height:60px;width:60px;" src="{$AVATAR}" />
 		  <strong{if $USERNAME_COLOUR != false} style="{$USERNAME_COLOUR}"{/if}>{$NICKNAME}</strong> 
 		  {$GROUP}
 		</h2>
 	  </div>
 	  <div class="col-md-4">
-		<span class="pull-right">
+		<span class="pull-right" style="padding-top:25px">
 		  {nocache}
 		  {if isset($LOGGED_IN)}
 		    {if !isset($SELF)}
 		  <div class="btn-group">
 			<!--<a href="{$FOLLOW_LINK}" class="btn btn-primary btn-lg"><i class="fa fa-users fa-fw"></i> {$FOLLOW}</a>-->
-			{if $MOD_OR_ADMIN ne true}<a href="#" data-toggle="modal" data-target="#blockModal" class="btn btn-danger btn-lg"><i class="fa fa-ban fa-fw"></i></a>{/if}
-			<a href="{$MESSAGE_LINK}" class="btn btn-default btn-lg"><i class="fa fa-envelope fa-fw"></i></a>
+			{if $MOD_OR_ADMIN ne true}<a href="#" data-toggle="modal" data-target="#blockModal" class="btn btn-danger"><i class="fa fa-ban fa-fw"></i></a>{/if}
+			<a href="{$MESSAGE_LINK}" class="btn btn-default"><i class="fa fa-envelope fa-fw"></i></a>
 		  </div>
 		    {else}
 		  <div class="btn-group">
-		    <a href="{$SETTINGS_LINK}" class="btn btn-default btn-lg"><i class="fa fa-cogs fa-fw"></i></a>
-		    <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#imageModal"><i class="fa fa-picture-o fa-fw" aria-hidden="true"></i></button>
+		    <a href="{$SETTINGS_LINK}" class="btn btn-default"><i class="fa fa-cogs fa-fw"></i></a>
+		    <button type="button" class="btn btn-info" data-toggle="modal" data-target="#imageModal"><i class="fa fa-picture-o fa-fw" aria-hidden="true"></i></button>
 		  </div>
 		    {/if}
 		  {/if}
@@ -89,11 +90,11 @@
 
 			<article class="panel panel-default">
 			  <div class="panel-heading icon">
-				<img class="rounded-circle" style="height:40px; width=40px;" src="{$post.avatar}" />
+				<img class="img-rounded" style="height:40px; width:40px;" src="{$post.avatar}" />
 			  </div>
 
 			  <div class="panel-heading">
-				<h2 class="panel-title" style="display:inline;"><a href="{$post.profile}" style="{$post.user_style}">{$post.nickname}:</a></h2>
+				<span class="panel-title" style="display:inline;" data-poload="{$USER_INFO_URL}{$post.user_id}" data-html="true" data-placement="top"><a href="{$post.profile}" style="{$post.user_style}">{$post.nickname}:</a></span>
 				<span class="pull-right"><span rel="tooltip" data-original-title="{$post.date}">{$post.date_rough}</span></span>
 			  </div>
 
@@ -162,7 +163,7 @@
 					
 				  </div>
 				  <div class="modal-footer">
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">{$CLOSE}</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">{$CLOSE}</button>
 				  </div>
 				</div>
 			  </div>
@@ -218,7 +219,7 @@
 					<input type="submit" value="{$SUBMIT}" class="btn btn-primary">
 					</form>
 				    {/if}
-					<button type="button" class="btn btn-secondary" data-dismiss="modal">{$CLOSE}</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">{$CLOSE}</button>
 				  </div>
 				</div>
 			  </div>
@@ -239,22 +240,17 @@
 		    <div class="col-md-4">
 			  <div class="panel panel-default">
 			    <div class="panel-body">
-				  {if isset($ABOUT_FIELDS.minecraft)}
 				    <center>
-					  <img src="{$ABOUT_FIELDS.minecraft.image}" alt="{$USERNAME}" class="rounded" />
-					  <h2{if $USERNAME_COLOUR != false} style="{$USERNAME_COLOUR}"{/if}>{$NICKNAME}</h2>
-					  {$USER_TITLE}
-					</center>
-					<hr />
-					<ul>
-					  <li>{$ABOUT_FIELDS.registered.title}</strong> <span rel="tooltip" title="{$ABOUT_FIELDS.registered.tooltip}">{$ABOUT_FIELDS.registered.value}</li>
-					  <li>{$ABOUT_FIELDS.last_seen.title}</strong> <span rel="tooltip" title="{$ABOUT_FIELDS.last_seen.tooltip}">{$ABOUT_FIELDS.last_seen.value}</li>
-					  <li>{$ABOUT_FIELDS.profile_views.title}</strong> {$ABOUT_FIELDS.profile_views.value}</li>
-					</ul>
-				  {else}
-				    <h2{if $USERNAME_COLOUR != false} style="{$USERNAME_COLOUR}"{/if}>{$NICKNAME}</h2>
-					<hr />
-				  {/if}
+					    <img {if isset($ABOUT_FIELDS.minecraft)}src="{$ABOUT_FIELDS.minecraft.image}{else}class="rounded" style="max-height:75px;max-width:75px;" src="{$AVATAR}{/if}" alt="{$USERNAME}" onerror="this.style.display='none'" />
+					    <h2{if $USERNAME_COLOUR != false} style="{$USERNAME_COLOUR}"{/if}>{$NICKNAME}</h2>
+					    {$USER_TITLE}
+				    </center>
+				    <hr />
+				    <ul>
+					    <li>{$ABOUT_FIELDS.registered.title}</strong> <span rel="tooltip" title="{$ABOUT_FIELDS.registered.tooltip}">{$ABOUT_FIELDS.registered.value}</li>
+					    <li>{$ABOUT_FIELDS.last_seen.title}</strong> <span rel="tooltip" title="{$ABOUT_FIELDS.last_seen.tooltip}">{$ABOUT_FIELDS.last_seen.value}</li>
+					    <li>{$ABOUT_FIELDS.profile_views.title}</strong> {$ABOUT_FIELDS.profile_views.value}</li>
+				    </ul>
 				</div>
 			  </div>
 			</div>
@@ -262,13 +258,17 @@
 			<div class="col-md-8">
 			  <div class="panel panel-default">
 			    <div class="panel-body">
-				  {foreach from=$ABOUT_FIELDS key=key item=field}
-					{if is_numeric($key)}
-					  <h3>{$field.title}</h3>
-					  <p>{$field.value}</p>
-					  <hr />
-					{/if}
-				  {/foreach}
+				    {if !isset($NO_ABOUT_FIELDS)}
+					    {foreach from=$ABOUT_FIELDS key=key item=field}
+						    {if is_numeric($key)}
+							    <h3>{$field.title}</h3>
+							    <p>{$field.value}</p>
+							    <hr />
+						    {/if}
+					    {/foreach}
+				    {else}
+					    <div class="alert alert-info">{$NO_ABOUT_FIELDS}</div>
+				    {/if}
 			    </div>
 			  </div>
 			</div>

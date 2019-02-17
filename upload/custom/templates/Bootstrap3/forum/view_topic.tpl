@@ -1,3 +1,4 @@
+{include file='header.tpl'}
 {include file='navbar.tpl'}
 
 <div class="container">
@@ -63,7 +64,7 @@
 				<center>
 				  <img class="img-rounded" style="width:100px; height:100px;" src="{$reply.avatar}" />
 				  <br /><br />
-				  <strong><a style="{$reply.user_style}" href="{$reply.profile}">{$reply.username}</a></strong>
+				  <strong><a style="{$reply.user_style}" href="{$reply.profile}" data-poload="{$USER_INFO_URL}{$reply.user_id}" data-html="true" data-placement="top">{$reply.username}</a></strong>
 				  <br />
 				  {foreach from=$reply.user_groups item=group}
 					{$group}<br />
@@ -87,7 +88,7 @@
 				{/if}
 			  </div>
 			  <div class="col-md-9">
-				{$BY} <a style="{$reply.user_style}" href="{$reply.profile}">{$reply.username}</a> &raquo; <span data-toggle="tooltip" data-trigger="hover" data-original-title="{$reply.post_date}">{$reply.post_date_rough}</span>
+				{$BY} <a style="{$reply.user_style}" href="{$reply.profile}" data-poload="{$USER_INFO_URL}{$reply.user_id}" data-html="true" data-placement="top">{$reply.username}</a> &raquo; <span data-toggle="tooltip" data-trigger="hover" data-original-title="{$reply.post_date}">{$reply.post_date_rough}</span>
 
 				<span class="pull-right">
 				  {if isset($reply.buttons.spam)}

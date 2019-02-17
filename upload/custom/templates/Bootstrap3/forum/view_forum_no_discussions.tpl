@@ -1,3 +1,4 @@
+{include file='header.tpl'}
 {include file='navbar.tpl'}
 
 <div class="container">
@@ -37,7 +38,7 @@
 				    <div class="col-md-9">
 					  <a href="{$subforum.latest_post.link}">{$subforum.latest_post.title}</a>
 					  <br />
-					  <span data-toggle="tooltip" data-trigger="hover" data-original-title="{$subforum.latest_post.time}">{$subforum.latest_post.timeago}</span><br />{$BY} <a style="{$subforum.latest_post.last_user_style}" href="{$subforum.latest_post.last_user_link}">{$subforum.latest_post.last_user}</a>
+					  <span data-toggle="tooltip" data-trigger="hover" data-original-title="{$subforum.latest_post.time}">{$subforum.latest_post.timeago}</span><br />{$BY} <a style="{$subforum.latest_post.last_user_style}" href="{$subforum.latest_post.last_user_link}" data-poload="{$USER_INFO_URL}{$subforum.latest_post.last_user_id}" data-html="true" data-placement="top">{$subforum.latest_post.last_user}</a>
 				    </div>
 				  </div>
 				  {else}
@@ -66,14 +67,6 @@
 		  </form>
 		  
 		  <br />
-		  
-		  <div class="panel panel-default">
-		    <div class="panel-body">  
-			  <h2 style="margin-top:5px;">{$STATISTICS} <i class="fa fa-bar-chart"></i></h2>
-			  {$USERS_REGISTERED}<br />
-			  {$LATEST_MEMBER}
-			</div>
-		  </div>
 
 		  {if count($WIDGETS)}
 		    {foreach from=$WIDGETS item=widget}

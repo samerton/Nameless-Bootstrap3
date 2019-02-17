@@ -1,3 +1,4 @@
+{include file='header.tpl'}
 {include file='navbar.tpl'}
 
 <div class="container">
@@ -37,6 +38,18 @@
                         <label for="inputContributors">{$CONTRIBUTORS}</label>
                         <input type="text" class="form-control" name="contributors" id="inputContributors" placeholder="{$CONTRIBUTORS}" value="{$RESOURCE_CONTRIBUTORS}">
                     </div>
+
+                    {if isset($PRICE)}
+                        <div class="form-group" id="priceFormGroup">
+                            <label for="inputPrice">{$PRICE}</label>
+                            <div class="input-group mb-3">
+                                <input type="number" step="0.01" min="0.01" class="form-control" id="inputPrice" name="price" value="{$RESOURCE_PRICE}">
+                                <div class="input-group-append">
+                                    <span class="input-group-text">{$CURRENCY}</span>
+                                </div>
+                            </div>
+                        </div>
+                    {/if}
 
                     <input type="hidden" name="token" value="{$TOKEN}">
                     <input type="submit" class="btn btn-primary" value="{$SUBMIT}">

@@ -1,9 +1,11 @@
+{include file='header.tpl'}
 {include file='navbar.tpl'}
 
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-body">
-            <h2>{$FORUM_SEARCH}</h2>
+            <h2 style="display:inline;">{$FORUM_SEARCH}</h2>
+            <br /><br />
 
             {if isset($ERROR)}
                 <div class="alert alert-danger">
